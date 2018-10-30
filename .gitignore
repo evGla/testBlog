@@ -1,0 +1,4 @@
+vendor/*
+frontend/web/phpMyAdmin/*
+vagrant/*
+.idea/*
