@@ -5,16 +5,19 @@ namespace common\models;
 use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\db\Expression;
+
+//TODO: move to common\models\db
 /**
  * This is the model class for table "publication".
  *
- * @property int $id
+ * @property int $publicationId
  * @property string $url
  * @property string $title
  * @property string $text
  * @property int $author
  * @property int $status
  */
+//TODO: devide into Publication and BasePublication
 class Publication extends \yii\db\ActiveRecord
 {
     /**
@@ -30,8 +33,8 @@ class Publication extends \yii\db\ActiveRecord
             'timestampBehavior' =>
             [
                 'class' => TimestampBehavior::className(),
-                'createdAtAttribute' => 'date_create',
-                'updatedAtAttribute' => 'date_update',
+                'createdAtAttribute' => 'dateCreate',
+                'updatedAtAttribute' => 'dateUpdate',
                 'value' => new Expression('NOW()'),
             ],
         ];
@@ -48,7 +51,7 @@ class Publication extends \yii\db\ActiveRecord
             [['author', 'status'], 'integer'],
             [['url', 'title'], 'string', 'max' => 255],
             [['url'], 'unique'],
-            [['date_create', 'date_update'], 'safe'],
+            [['dateCreate', 'dateUpdate'], 'safe'],
         ];
     }
 
@@ -58,18 +61,14 @@ class Publication extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
+            'publicationId' => 'ID',
             'url' => 'Url',
             'title' => 'Title',
             'text' => 'Text',
             'author' => 'Author',
             'status' => 'Status',
-            'date_create' => 'Date create',
-            'date_update' => 'Date update',
+            'dateCreate' => 'Date create',
+            'dateUpdate' => 'Date update',
         ];
-    }
-
-    public function getAuthor(){
-       return $this->hasOne(User::className(), ['id' => 'author']);
     }
 }

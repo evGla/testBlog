@@ -51,6 +51,7 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                'page/<page:\d+>'=>'publication/index',
                // '/backend' => 'site/index',
                 //'<controller:\w+>/<action:\w+>/' => '<controller>/<action>',
             ],

@@ -70,7 +70,7 @@ class UserController extends Controller
         $model = new User();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['view', 'id' => $model->userId]);
         }
 
         return $this->render('create', [
@@ -83,7 +83,7 @@ class UserController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['view', 'id' => $model->userId]);
         }
 
         return $this->render('update', [
@@ -107,4 +107,42 @@ class UserController extends Controller
         throw new NotFoundHttpException('The requested page does not exist.');
     }
 
+    public function actionRole(){
+        /*
+        //Создание ролей
+          $admin = Yii::$app->authManager->createRole('admin');
+          $admin->description = 'Admin';
+          Yii::$app->authManager->add($admin);
+
+          $user = Yii::$app->authManager->createRole('user');
+          $user->description = 'User';
+          Yii::$app->authManager->add($user);
+
+          $banned = Yii::$app->authManager->createRole('banned');
+          $banned->description = 'Banned user';
+          Yii::$app->authManager->add($banned);
+          ----
+
+        // Создание прав
+          $permit = Yii::$app->authManager->createPermission('canAdmin');
+          $permit->description = 'Право на вход в админку';
+          Yii::$app->authManager->add($permit);
+
+          ----
+          // Наследование прав и ролей
+          $role = Yii::$app->authManager->getRole('admin');
+          $permit = Yii::$app->authManager->getPermission('canAdmin');
+          Yii::$app->authManager->addChild($role, $permit);
+
+          -----
+        // Привязка ролей к пользователю
+          $userRole = Yii::$app->authManager->getRole('admin');
+          Yii::$app->authManager->assign($userRole, Yii::$app->user->getId(1));
+
+
+          $userRole = Yii::$app->authManager->getRole('user');
+          Yii::$app->authManager->assign($userRole, Yii::$app->user->getId(3));
+        */
+        return 'success';
+    }
 }

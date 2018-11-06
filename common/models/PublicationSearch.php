@@ -18,7 +18,7 @@ class PublicationSearch extends Publication
     public function rules()
     {
         return [
-            [['id', 'author', 'status'], 'integer'],
+            [['publicationId', 'author', 'status'], 'integer'],
             [['url', 'title', 'text'], 'safe'],
         ];
     }
@@ -47,7 +47,9 @@ class PublicationSearch extends Publication
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => [
-                'pageSize' => 20,
+                'pageSize' => 4,
+                'pageSizeParam' => false,
+                'forcePageParam' => false,
             ]
         ]);
 
@@ -61,7 +63,7 @@ class PublicationSearch extends Publication
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'id' => $this->id,
+            'id' => $this->publicationId,
             'author' => $this->author,
             'status' => $this->status,
         ]);

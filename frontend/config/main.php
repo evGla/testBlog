@@ -47,10 +47,9 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                'page/<page:\d+>'=>'publication/all',
                 'publication/<url>'=>'publication/one',
                 'publication'=>'publication/all',
-
-
             ],
         ],
     ],

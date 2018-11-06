@@ -4,28 +4,50 @@ namespace frontend\controllers;
 use PhpMyAdmin\Di\NotFoundException;
 use Yii;
 use yii\web\Controller;
-use  common\models\Publication;
+use common\models\Publication;
 use yii\web\NotFoundHttpException;
+use yii\data\Pagination;
 
 
 /**
- * Site controller
+ * Publication controller
  */
 class PublicationController extends Controller
 {
+    const STATUS_ACTIVE = 1;
+    //TODO: add PhpDoc
     public function actionAll()
     {
-        $publications = Publication::find()->andWhere(['status'=>1])->all();
-        return $this->render('all', ['publications' => $publications]);
+        //TODO: magic numbers to constants
+
+        //TODO: return data in JSON format
+        //TODO: add portion loading ($limit, $offset)
+
+        $query = Publication::find()->andWhere(['status'=>self::STATUS_ACTIVE]);
+
+        $pagination = new Pagination([
+            'totalCount' => $query->count(),
+            'pageSize' => 3,
+            'pageSizeParam' => false,
+            'forcePageParam' => false,
+        ]);
+
+        $publications = $query->offset($pagination->offset)->limit($pagination->limit)->all();
+
+        return $this->render('all', ['publications' => $publications, 'pagination' => $pagination]);
+
     }
 
-     public function actionOne($url)
-      {
-          if($publication = Publication::find()->andWhere(['url'=>$url])->one()){
-              return $this->render('one', ['publication' => $publication]);
-          }
-          throw new NotFoundHttpException('Publication ' .$url. ' not found');
-      }
+    //TODO: update formatting
+    //TODO: add PhpDoc
+    public function actionOne($url)
+    {
+        if($publication = Publication::find()->andWhere(['url'=>$url])->one())
+        {
+            return $this->render('one', ['publication' => $publication]);
+        }
+        throw new NotFoundHttpException('Publication ' .$url. ' not found');
+    }
     /*
 
     public function actionView($id)

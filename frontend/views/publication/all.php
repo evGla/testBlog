@@ -5,5 +5,8 @@
             <p><?=$one->text?></p>
             <?= \yii\bootstrap\Html::a('подробнее', ['publication/one', 'url'=> $one->url], ['class'=> 'btn btn-success'])?>
         </div>
+
     <?php endforeach; ?>
+
+    <?= \yii\widgets\LinkPager::widget(['pagination' => $pagination]) ?>
 </div>

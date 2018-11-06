@@ -12,6 +12,7 @@ class m181026_163020_create_publication_table extends Migration
      */
     public function safeUp()
     {
+        //TODO: rename id to publicationId
         $this->createTable('publication', [
             'id' => $this->primaryKey(),
             'url' => $this->string()->unique(),

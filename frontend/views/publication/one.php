@@ -4,5 +4,5 @@
 <?= $publication->text?>
 <br><br><br>
 <p>Author: <?=Yii::$app->user->identity->username?></p>
-<p>Created: <?=$publication->date_create?></p>
-<p>Last update: <?=$publication->date_update?></p>
+<p>Created: <?=$publication->dateCreate?></p>
+<p>Last update: <?=$publication->dateUpdate?></p>

@@ -7,20 +7,22 @@ use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
 
+//TODO: move to common\models\db
 /**
  * User model
  *
- * @property integer $id
+ * @property integer $userId
  * @property string $username
  * @property string $password_hash
  * @property string $password_reset_token
  * @property string $email
  * @property string $auth_key
  * @property integer $status
- * @property integer $created_at
- * @property integer $updated_at
+ * @property integer $createdAt
+ * @property integer $updatedAt
  * @property string $password write-only password
  */
+//TODO: devide into User and BaseUser
 class User extends ActiveRecord implements IdentityInterface
 {
     const STATUS_DELETED = 0;
@@ -61,7 +63,7 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public static function findIdentity($id)
     {
-        return static::findOne(['id' => $id, 'status' => self::STATUS_ACTIVE]);
+        return static::findOne(['userId' => $id, 'status' => self::STATUS_ACTIVE]);
     }
 
     /**
